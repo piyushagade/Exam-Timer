@@ -1,0 +1,237 @@
+ 
+<div class="bramhan">
+  <!--gradient-->
+  <div class="alert" [ngClass]="{'hidden': !last5mins}"></div>
+  <div id="gradient" class="gradient" [ngClass]="{'hidden': last5mins}"></div>
+  
+  <!--welcome-->
+  <!--topbar-->
+  <div class="topbar" [@topbar]='examPanelState'>
+     <div class="cell-logo">
+          <img class="uf-logo" src="./app/images/ufsq.png">  
+     </div>
+
+     <div class="cell" [ngClass]="{'hidden': panel !== 'home', 'cell': panel === 'home'}">
+        <h2 class="gray">Hey there!</h2>
+        <p><span class="color">Welcome to UF Exam Timer.</span> <br/>Exam timer is exactly what it sounds like.</p>
+     </div>
+
+     <div class="cell-info" [ngClass]="{'hidden': panel !== 'begun' && panel !== 'created' , 'cell-info': panel === 'begun' || panel === 'created'}">
+           <div class="examInfo">
+              <span class="big">{{course}}</span><br>
+              <span class="big gray">{{number}}</span><br>
+          </div>
+     </div>
+
+     <!--fullscreen-->
+     <div class="cell-last" id="toggleFullscreen">
+        <p><img src="./app/images/fullscreen.png" class="topbar-icon"></p>
+        <span class="topbar-label">Fullscreen</span>
+     </div>
+
+     <!--reset-->
+     <div class="cell-last" (click)="resetTimer()" [ngClass]="{'hidden': panel !== 'begun', 'cell-last': panel === 'begun'}">
+        <p><img src="./app/images/reset.png" class="topbar-icon"></p>
+        <span class="topbar-label">Reset</span>
+     </div>
+
+     <!--announce-->
+     <div class="cell-last">
+        <p><img src="./app/images/announce.png" class="topbar-icon"></p>
+        <span class="topbar-label">Make an announcement</span>
+     </div>
+
+  </div>
+
+  <!--begin button-->
+  <div class="panel-alt-2" [@movePanel]='move' [ngClass]="{'hidden': panel !== 'home'}">
+      <span class="big white">Let's get started.</span><br><br>
+      
+      <div>
+        <p class="med box-1">
+          Welcome to Exam Timer. Exam Timer is a countdown timer to help manage written tests. <br/>Exam Timer features making announcements, instructions, and much more.
+        </p>
+      </div>
+
+      <div>
+        <p class="med box-2">
+          You need to create an examination event first. To begin click on the button below.
+        </p>
+      </div>
+      
+  </div>
+
+    <div class="panel-alt-2-button" [@movePanel]='move' [ngClass]="{'hidden': panel !== 'home'}">
+      
+      <div>
+        <button id="create_exam" class="style-2" (click) = "createExam()">Create an exam</button>
+      </div>
+      
+  </div>
+  
+  
+
+
+
+
+
+  <!--new exam-->
+  <!--<div class="curtain" [ngClass]="{'hidden': panel != 'create'  }" [@curtainPanel]='examPanelState'></div>-->
+  <div class="panel" [ngClass]="{'hidden': panel != 'create'}" [@newExamPanel]='examPanelState'>
+    <span class="close" (click)='hidePanel()'>X</span>
+      <h2 class="color">Create an exam event</h2>
+
+      <form [formGroup]="newExamForm" (ngSubmit)='onNewExamCreate($event)'>
+          <tr>
+            <td>
+              <label>
+                <span>Exam Title</span>
+                <input formControlName="title" type="text" placeholder="Midterm 1">
+              </label>
+              
+              <label>
+                <span>Course Name</span>
+                <input formControlName="course" type="text" placeholder="Machine Learning">
+              </label>
+              
+              <label>
+                <span>Course Number</span>
+                <input formControlName="number" type="text" placeholder="CSE4142">
+              </label>
+              
+              <label>
+                <span>Department</span>
+                <input formControlName="department" type="text" placeholder="Computer Science">
+              </label>
+              
+              <label>
+                <span>Professor's Name</span>
+                <input formControlName="professor" type="text" placeholder="Charles Xavier">
+              </label>
+              
+              <label>
+                <span>Duration (minutes)</span>
+                <input formControlName="duration" type="number" placeholder="90">
+              </label>
+              <hr/>
+              <input type="submit" id="submit" value="Create">
+              <br>
+            </td>
+
+
+
+
+            <td valign="top">
+              <label>
+                <span>Calculator allowed?</span>
+                <select formControlName="calculator">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </label>
+              
+              <label>
+                <span>Blank sheets provided?</span>
+                <select formControlName="blanksheets">
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </label>
+              
+            </td>
+
+          </tr>
+
+
+        <!--<hr/>
+        <span class="center gray">- or -</span><br/>
+        <button value="Load from file">Load from file</button>-->
+      </form>
+  </div>
+
+
+
+  <div class="panel" [ngClass]="{'hidden': panel != 'instructions'}">
+    <span class="close" (click)='hidePanel()'>X</span>
+      <h2 class="color">Exam Instructions</h2>
+      <ol>
+        <li>Maintain silence at all times. Action will be taken againts those who fail to do so.</li>
+        <li>Calculators are <span *ngIf="calculator !== 'yes'" class="color"><b><u>NOT</u></b></span> allowed.</li>
+        <li>Blanksheets will <span *ngIf="blanksheets !== 'yes'" class="color"><b><u>NOT</u></b></span> be provided for scratch work.</li>
+        <li>Do not start answering the text unless instructed, or the timer starts.</li>
+        <li>The duration of the exam is <span class="color"><b><u>{{duration}}</u></b></span> minutes.</li>
+        <li>In case you need to ask something, quietly raise your hand, and we will get to you.</li>
+      </ol>
+      <br><br>
+      <span class="gray med center">Good luck!</span>
+  </div>
+
+<!--test created-->
+  <div class="panel-alt-2" [@movePanel]='move' [ngClass]="{'hidden': panel !== 'created'}">
+      <span class="big white">{{title}} exam event created.</span><br><br>
+      
+      <div>
+        <p class="med box-1">
+          Next, either you can choose to show test instructions or can skip it to begin the test.
+        </p>
+      </div>
+
+      <div>
+        <p class="med box-2">
+          Select an option from below.
+        </p>
+      </div>
+      
+  </div>
+
+    <div class="panel-alt-2-button" [@movePanel]='move' [ngClass]="{'hidden': panel !== 'created'}">
+      
+      <div>
+        <button id="show_instructions" class="style-2" (click) = "showInstructions()">Show Instructions</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="begin_exam" class="style-2" (click) = "beginExam()">Begin Exam</button>
+      </div>
+      
+  </div>
+
+
+
+
+
+
+
+  <!--test started-->
+  <!--<div class="panel-alt" [ngClass]="{'hidden': panel !== 'begun'}">
+
+
+      <div class="timer">
+          <div class="timer-box">
+              <span class="big color">Time remaining</span>
+          </div>
+      </div>
+
+  </div>-->
+
+  <div class="panel-alt" [ngClass]="{'hidden': panel !== 'begun'}">
+
+      <span class="big white">Time remaining</span>
+      
+      <div class="timer">
+          <div class="timer-box">
+              <span class="hours">{{hours}}:</span>
+              <span class="minutes">&nbsp;{{minutes}}</span>
+              <span class="seconds">&nbsp; {{seconds}}</span>
+          </div>
+      </div>
+      
+      <audio id="timer-beep">
+        <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.mp3"/>
+        <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41203/beep.ogg" />
+      </audio>
+
+  </div>
+</div>
+
+<div class="announcement-input-div">
+  <input type="text"/>
+</div>
+  
