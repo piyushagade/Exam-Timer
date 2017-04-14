@@ -1,3 +1,5 @@
+// Machine Learning%:CSE1212%:Midterm 1%:190%:yes%:yes
+
 $(function() {
   $('input').on('change', function() {
     var input = $(this);
@@ -35,4 +37,26 @@ $('#toggleFullscreen').click(function(){
 
 $('#resetTimer').click(function(){
 
+});
+
+$('#loadBackup').click(function(){
+    const data = $('#load_string').val().split("%:");
+    if(data.length > 1){
+      $('#course').val(data[0]);
+      $('#number').val(data[1]);
+      $('#title').val(data[2]);
+      $('#duration').val(data[3]);
+      $('#calculator').val(data[4]);
+      $('#blanksheets').val(data[5]);
+
+      $('#loadFRomBackupDiv').html(`
+      <span style="color: #ffe;" >The exam has been loaded from the backup string. Make changes above as you like and then click 'Proceed'.</span>
+      `);
+    }
+
+    else{
+      setTimeout(function(){
+          $('#invalidbackupstringalert').removeClass('hidden');
+      }, 400);
+    }
 });

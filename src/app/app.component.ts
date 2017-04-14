@@ -80,7 +80,7 @@ import {
 
 
 export class AppComponent {
-  panel = 'create';
+  panel = 'home';
   duration: number;
   elapsed: number;
   title: string;
@@ -91,6 +91,7 @@ export class AppComponent {
   calculator: string;
   blanksheets: string;
   last5mins: boolean;
+
 
   object;
   observable;
@@ -116,6 +117,7 @@ export class AppComponent {
     blanksheets: ['', Validators.required],
     number: ['', Validators.required]
   });
+
 
   constructor(public fb: FormBuilder, public http: Http){
     this.object = {data: []};
@@ -153,12 +155,9 @@ export class AppComponent {
     this.number = this.object.data[0].number;
     this.professor = this.object.data[0].professor;
     this.department = this.object.data[0].department;
-
-    console.log('Duration: ' + this.duration);
-
-
-
+    console.log(this.newExamForm.value);
   }
+
 
 
   beginExam(){

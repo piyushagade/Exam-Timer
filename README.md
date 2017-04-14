@@ -1,31 +1,32 @@
-# Exam
+# Exam Timer
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
+Introduction
+---
+Exam Timer is an examination time managing app made in Angular 2. It allows tracking time, making announcements, customized exam instructions, and much more...
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+Collaboration
+---
+We would love to have collaborators contribute to this project or any other of our projects. Email us at piyushagade@gmail.com
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
 
-## Build
+Screenshots
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+<img src="http://i.imgur.com/kdR7Vmh.png"/>
 
-## Running unit tests
+<img src="http://i.imgur.com/2RrnRAs.png"/>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<img src="http://i.imgur.com/qi3L9Q9.png"/>
 
-## Running end-to-end tests
+<img src="http://i.imgur.com/cZ7ST7C.png"/>
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+<img src="http://i.imgur.com/B9JYsVh.png"/>
 
-## Deploying to GitHub Pages
 
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Features planned & To-do
+---
+1. Backup exam info data for future use.
+2. Implement announcements feature.
+3. Form validation.
+4. Include Mousetrap.

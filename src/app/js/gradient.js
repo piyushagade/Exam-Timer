@@ -44,7 +44,7 @@ var color2 = "rgb("+r2+","+g2+","+b2+")";
     background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
   
   step += gradientSpeed;
-  if ( step >= 1 )
+  if (step >= 1)
   {
     step %= 1;
     colorIndices[0] = colorIndices[1];
@@ -58,4 +58,4 @@ var color2 = "rgb("+r2+","+g2+","+b2+")";
   }
 }
 
-setInterval(updateGradient,30);
+setInterval(updateGradient,80); //change number to increase/decrease speed
