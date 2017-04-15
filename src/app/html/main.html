@@ -7,163 +7,50 @@
   <!--topbar-->
   <et-topbar 
     [panel] = 'panel'
-    (reset) = "resetTimer()">
+    (reset) = "resetTimer()"
+    (create_announcement) = "createAnnouncement()"
+    >
   </et-topbar>
 
   <!--home panel-->
-  <div class="panel-transparent" [@movePanel]='move' *ngIf="panel == 'home'">
-      <!--heading-->
-      <span class="big white">Let's get started.</span><br><br>
-      
-      <!--box 1-->
-      <div>
-        <p class="med box-1">
-          Welcome to Exam Timer. Exam Timer is a countdown timer to help manage written tests. <br/>Exam Timer features making announcements, instructions, and much more.
-        </p>
-      </div>
-
-      <!--box 2-->
-      <div>
-        <p class="med box-2">
-          You need to create an examination event first. To begin click on the button below.
-        </p>
-      </div>
-      
-      <!--action buttons-->
-      <div class="panel-buttons">
-        <button id="create_exam" class="button-style-hollow" (click) = "createExam()">Create an exam</button>
-      </div>
-  </div>
+  <et-home-panel
+    [panel] = 'panel'
+    (create) = "createExam()">
+  </et-home-panel>
 
   <!--create new exam-->
-  <div class="panel-transparent-wide"  *ngIf="panel == 'create'" [@newExamPanel]='examPanelState'>
-    <span class="big white">Create an examination event.</span><br><br>
-      
-    <div class="box-1-dark">
-      <form [formGroup]="newExamForm" class="create" (ngSubmit)='onNewExamCreate($event)'>
-        <tbody>
-          <tr>
-            <td>
-              <label>
-                <span>Course Name</span>
-                <input formControlName="course" id="course" type="text" class="style-3" placeholder="Machine Learning">
-              </label>
-            </td>
-
-            <td>
-              <label>
-                <span>Course Number</span>
-                <input formControlName="number" id="number" type="text" class="style-3" placeholder="CSE4142">
-              </label>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <label>Exam title:
-                <input type="text" formControlName="title" id="title" class="style-3" placeholder="Midterm 1"/>
-              </label>
-            </td>
-            <td>
-              <label>
-                <span>Duration (minutes)</span>
-                <input formControlName="duration" id="duration" type="number" class="style-3" placeholder="90">
-              </label>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <label>
-                <span>Calculator allowed?</span><br>
-                <select formControlName="calculator" id="calculator">
-                  <option value="yes">Yes</option>
-                  <option value="no" selected="selected">No</option>
-                </select>
-              </label>
-            </td>
-            <td>
-              <label>
-                <span>Blank sheets provided?</span><br>
-                <select formControlName="blanksheets" id="blanksheets">
-                  <option value="yes" selected>Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </label>
-            </td>
-          </tr>
-        </tbody>
-                
-        <br/>
-        <br/>
-        <input type="submit" id="submit" value="Proceed" [disabled]="false"/>
-      </form>
-    </div>
-  </div>
+  <et-create-exam
+    [panel] = "panel"
+    (created) = "onNewExamCreate($event)">
+  </et-create-exam>
 
   <!--exam instructions-->
-  <div class="panel-transparent-wide" *ngIf="panel == 'instructions'">
-    <span class="big white">Exam Instructions</span><br><br>
-    
-    <div class="box-1-dark wide-panel">
-      <ol>
-        <li>Maintain silence at all times. Action will be taken againts those who fail to do so.</li>
-        <li>Calculators are <span *ngIf="calculator !== 'yes'" class="highlight-light color"><b>NOT</b></span> allowed.</li>
-        <li>Blanksheets will <span *ngIf="blanksheets !== 'yes'" class="highlight-light color"><b>NOT</b></span> be provided for rough work.</li>
-        <li>Do not start answering the test unless instructed, or the timer starts.</li>
-        <li>The duration of the exam is <span class="highlight-light color"><b>{{duration}} minutes.</b></span></li>
-        <li>In case you need to ask something, quietly raise your hand, and we will get to you.</li>
-      </ol>
-      <br>
-      
+  <et-instructions-panel
+    [panel] = "panel"
+    [calculator] = "calculator"
+    [blanksheets] = "blanksheets"
+    [duration] = "duration"
+    (close) = "hidePanel()">
+  </et-instructions-panel>
 
-      <input type="submit" (click)='hidePanel()' value="Close">
-    </div>
-  </div>
-
-<!--exam created panel-->
-  <div class="panel-transparent" [@movePanel]='move'  *ngIf="panel == 'created'">
-      <!--header-->
-      <span class="big white">{{title}} exam event created.</span><br><br>
-
-      <!--box 1-->
-      <div>
-        <p class="med box-1">
-          Next, either you can choose to show test instructions or can skip it to begin the test.
-        </p>
-      </div>
-
-      <!--box 2-->
-      <div>
-        <p class="med box-2">
-          Select an option from below.
-        </p>
-      </div>
-      
-      <!--action buttons-->
-      <div class="panel-buttons">
-        <button id="show_instructions" class="button-style-hollow" (click) = "showInstructions()">Show Instructions</button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button id="begin_exam" class="button-style-hollow" (click) = "beginExam()">Begin Exam</button>
-      </div>
-  </div>
+  <!--exam created panel-->
+  <et-created-panel
+    [panel] = "panel"
+    (instructions) = "showInstructions()"
+    (begin) = "beginExam()">
+  </et-created-panel>
 
 
   <!--running timer panel-->
-  <div class="panel-timer" *ngIf="panel == 'begun'">
-      <!--heading-->
-      <span class="big white">Time remaining</span><br><br>
-      
-      <!--timer-->
-      <div class="timer">
-          <div class="timer-box">
-              <span class="hours">{{hours}}</span><span class="med timer-label">hrs</span>
-              <span class="minutes">&nbsp;{{minutes}}</span><span class="med timer-label">mins</span>
-              <span class="seconds">&nbsp; {{seconds}}</span><span class="med timer-label">sec</span>
-          </div>
-      </div>
-</div>
+  <et-begun-panel
+    [panel] = "panel"
+    [hours] = "hours"
+    [minutes] = "minutes"
+    [seconds] = "seconds"
+    >
+  </et-begun-panel>
 
-<div class="announcement-input-div">
-  <input type="text"/>
-</div>
+  <!--create announcement-->
+  <et-create-announcement>
+  </et-create-announcement>
   

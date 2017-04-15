@@ -1,0 +1,19 @@
+<!--exam instructions-->
+  <div class="panel-transparent-wide" *ngIf="panel == 'instructions'">
+    <span class="big white">Exam Instructions</span><br><br>
+    
+    <div class="box-dark wide-panel">
+      <ol>
+        <li>Maintain silence at all times. Action will be taken against those who fail to do so.</li>
+        <li>Calculators are <span *ngIf="calculator !== 'yes'" class="highlight-light color"><b>NOT</b></span> allowed.</li>
+        <li>Blanksheets will <span *ngIf="blanksheets !== 'yes'" class="highlight-light color"><b>NOT</b></span> be provided for rough work.</li>
+        <li>Do not start answering the test unless instructed, or the timer starts.</li>
+        <li>The duration of the exam is <span class="highlight-light color"><b>{{duration}} minutes.</b></span></li>
+        <li>In case you need to ask something, quietly raise your hand, and we will get to you.</li>
+      </ol>
+      <br>
+      
+
+      <input type="submit" (click)='closeInstructions()' value="Close">
+    </div>
+  </div>

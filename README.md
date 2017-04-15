@@ -9,6 +9,9 @@ Collaboration
 ---
 We would love to have collaborators contribute to this project or any other of our projects. Email us at piyushagade@gmail.com
 
+Demo
+---
+See a demo [here](https://exam-timer.firebaseapp.com/).
 
 Screenshots
 ---
@@ -30,5 +33,3 @@ Features planned & To-do
 2. Implement announcements feature.
 3. Form validation.
 4. Include Mousetrap.
-
-http://imgur.com/OQAFzFc

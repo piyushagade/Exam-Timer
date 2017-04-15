@@ -35,7 +35,7 @@ div{
 }
 
 
-.style-1{
+.button-style-light-rounded{
     background: #EEE;
     border: 1px solid #EEE;
     color: #555;
@@ -43,16 +43,17 @@ div{
     padding: 16px;
     width: 200px;
     border-radius: 30px;
-    transition: border 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    text-transform: uppercase;
     outline: none;
 }
 
-.style-1:hover{
-    border: 1px solid #666;
+.button-style-light-rounded:hover{
+    box-shadow: 4px 4px 10px rgba(40,40,40,0.33);
 }
 
 
-.style-1:active{
+.button-style-light-rounded:active{
     border: 1px solid #333;
 }
 
@@ -68,12 +69,14 @@ div{
     padding-right: 40px;
     width: 280px;
     border-radius: 0px;
-    transition: border 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     outline: none;
+    cursor: pointer;
 }
 
 .button-style-hollow:hover{
     border: 1px solid #fff;
+    box-shadow: 0px 0px 16px rgba(240,240,240,0.50);    
 }
 
 
@@ -296,6 +299,7 @@ input[type="textbox"] {
     height: 180px;
     width: 180px;
     transform: scale(1.036);
+    box-shadow: 4px 4px 10px rgba(40,40,40,0.33);    
 }
 
 .top img{
@@ -345,11 +349,6 @@ input[type="textbox"] {
     display: inline-block;
 }
 
-.box-1-dark{
-    background: rgba(40, 30, 30, .66);
-    padding: 30px;
-}
-
 
 .box-2{
     background: rgba(240, 240, 240, .44);
@@ -358,6 +357,16 @@ input[type="textbox"] {
     display: inline-block;
 }
 
+
+.box-dark{
+    background: rgba(40, 30, 30, .66);
+    padding: 30px;
+    transition: all 0.78s ease-in-out;
+}
+
+.box-dark:hover{
+    background: rgba(40, 30, 30, .96);
+}
 
 
 /*panel-transparent*/

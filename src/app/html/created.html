@@ -1,0 +1,25 @@
+<!--exam created panel-->
+  <div class="panel-transparent" [@movePanel]='move'  *ngIf="panel == 'created'">
+      <!--header-->
+      <span class="big white">{{title}} exam event created.</span><br><br>
+
+      <!--box 1-->
+      <div>
+        <p class="med box-1">
+          Next, either you can choose to show test instructions or can skip it to begin the test.
+        </p>
+      </div>
+
+      <!--box 2-->
+      <div>
+        <p class="med box-2">
+          Select an option from below.
+        </p>
+      </div>
+      
+      <!--action buttons-->
+      <div class="panel-buttons">
+        <button id="show_instructions" class="button-style-hollow" (click) = "showInstructions()">Show Instructions</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="begin_exam" class="button-style-hollow" (click) = "beginExam()">Begin Exam</button>
+      </div>
+  </div>

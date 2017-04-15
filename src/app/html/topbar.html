@@ -1,7 +1,7 @@
 <!--topbar-->
   <div class="topbar" [@topbar]='examPanelState'>
      <div class="cell-logo">
-          <img class="uf-logo" src="./app/images/ufsq.png">  
+          <img class="uf-logo" src="./assets/images/ufsq.png">  
      </div>
 
      <div class="cell" [ngClass]="{'hidden': panel !== 'home', 'cell': panel === 'home'}">
@@ -18,19 +18,19 @@
 
      <!--fullscreen-->
      <div class="cell-last" id="toggleFullscreen">
-        <p><img src="./app/images/fullscreen.png" class="topbar-icon"></p>
+        <p><img src="./assets/images/fullscreen.png" class="topbar-icon"></p>
         <span class="topbar-label">Fullscreen</span>
      </div>
 
      <!--reset-->
      <div class="cell-last" (click)="onReset()" [ngClass]="{'hidden': panel !== 'begun', 'cell-last': panel === 'begun'}">
-        <p><img src="./app/images/reset.png" class="topbar-icon"></p>
+        <p><img src="./assets/images/reset.png" class="topbar-icon"></p>
         <span class="topbar-label">Reset</span>
      </div>
 
      <!--announce-->
-     <div class="cell-last">
-        <p><img src="./app/images/announce.png" class="topbar-icon"></p>
+     <div class="cell-last" (click)="createAnnouncement()">
+        <p><img src="./assets/images/announce.png" class="topbar-icon"></p>
         <span class="topbar-label">Make an announcement</span>
      </div>
 

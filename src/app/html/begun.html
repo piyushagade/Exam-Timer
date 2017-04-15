@@ -1,0 +1,14 @@
+  <!--running timer panel-->
+  <div class="panel-timer" *ngIf="panel == 'begun'">
+      <!--heading-->
+      <span class="big white">Time remaining</span><br><br>
+      
+      <!--timer-->
+      <div class="timer">
+          <div class="timer-box">
+              <span class="hours">{{hours}}</span><span class="med timer-label">hrs</span>
+              <span class="minutes">&nbsp;{{minutes}}</span><span class="med timer-label">mins</span>
+              <span class="seconds">&nbsp; {{seconds}}</span><span class="med timer-label">sec</span>
+          </div>
+      </div>
+</div>

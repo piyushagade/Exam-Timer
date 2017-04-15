@@ -4,7 +4,7 @@ import { Input, Output, EventEmitter } from '@angular/core';
 @Component({
     selector: 'et-topbar',
     templateUrl: '../html/topbar.html',
-    styleUrls: ['../css/main.css'],
+    styleUrls: ['../../assets/css/main.css'],
 
     animations: [
 
@@ -24,8 +24,13 @@ import { Input, Output, EventEmitter } from '@angular/core';
 export class TopBarComponent{
     @Input() panel;
     @Output() reset = new EventEmitter;
+    @Output() create_announcement = new EventEmitter;
 
     onReset(){
-        this.reset.emit();
+      this.reset.emit();
+    }
+
+    createAnnouncement(){
+      this.create_announcement.emit();
     }
 }
