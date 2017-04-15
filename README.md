@@ -17,11 +17,11 @@ Screenshots
 
 <img src="http://i.imgur.com/2RrnRAs.png"/>
 
+<img src="http://i.imgur.com/OQAFzFc.png"/>
+
 <img src="http://i.imgur.com/qi3L9Q9.png"/>
 
 <img src="http://i.imgur.com/cZ7ST7C.png"/>
-
-<img src="http://i.imgur.com/B9JYsVh.png"/>
 
 
 Features planned & To-do
@@ -30,3 +30,5 @@ Features planned & To-do
 2. Implement announcements feature.
 3. Form validation.
 4. Include Mousetrap.
+
+http://imgur.com/OQAFzFc

@@ -61,16 +61,6 @@ import {
         }),
         animate('1400ms, ease-in')
       ])
-    ]),
-
-    //topbar animation
-    trigger('topbar', [
-      transition('void => *', [
-        style({
-          opacity: 0
-        }),
-        animate('900ms, ease-in')
-      ])
     ])
 
   ]
@@ -92,6 +82,8 @@ export class AppComponent {
   blanksheets: string;
   last5mins: boolean;
 
+  topbarStatus = this.panel;
+
 
   object;
   observable;
@@ -110,7 +102,7 @@ export class AppComponent {
   public newExamForm = this.fb.group({
     title: ['', Validators.required],
     course: ['', Validators.required],
-    department: ['', Validators.required],
+    department: ['\s*', Validators.required],
     professor: ['', Validators.required],
     duration: ['', Validators.required],
     calculator: ['', Validators.required],
