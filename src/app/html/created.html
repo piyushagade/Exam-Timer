@@ -1,7 +1,7 @@
 <!--exam created panel-->
   <div class="panel-transparent" [@movePanel]='move'  *ngIf="panel == 'created'">
       <!--header-->
-      <span class="big white">{{title}} exam event created.</span><br><br>
+      <span class="big white">{{title}}<span *ngIf="title == ''">An</span> exam event created.</span><br><br>
 
       <!--box 1-->
       <div>

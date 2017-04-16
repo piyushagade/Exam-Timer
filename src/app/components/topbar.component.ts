@@ -14,7 +14,26 @@ import { Input, Output, EventEmitter } from '@angular/core';
         style({
           opacity: 0
         }),
-        animate('900ms, ease-in')
+        animate('400ms, ease-in-out')
+      ])
+    ]),
+
+    trigger('icon', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({
+          transform: 'scale(0.6)',
+          opacity:0
+        }),
+        animate(300, style({
+          transform: 'scale(1)',
+          opacity:1
+        })) 
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(300, style({
+          transform: 'scale(.6)',
+          opacity:0
+        })) 
       ])
     ])
 
@@ -23,6 +42,8 @@ import { Input, Output, EventEmitter } from '@angular/core';
 
 export class TopBarComponent{
     @Input() panel;
+    @Input() course;
+    @Input() number;
     @Output() reset = new EventEmitter;
     @Output() create_announcement = new EventEmitter;
 

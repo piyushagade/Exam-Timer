@@ -6,22 +6,24 @@
   
   <!--topbar-->
   <et-topbar 
-    [panel] = 'panel'
+    [panel] = "panel"
+    [course] = "course"
+    [number] = "number"
     (reset) = "resetTimer()"
-    (create_announcement) = "createAnnouncement()"
-    >
+    (create_announcement) = "createAnnouncement()">
   </et-topbar>
 
   <!--home panel-->
   <et-home-panel
-    [panel] = 'panel'
+    [panel] = "panel"
     (create) = "createExam()">
   </et-home-panel>
 
   <!--create new exam-->
   <et-create-exam
     [panel] = "panel"
-    (created) = "onNewExamCreate($event)">
+    (created) = "onNewExamCreate($event)"
+    (hide) = "hidePanel()">
   </et-create-exam>
 
   <!--exam instructions-->
@@ -36,6 +38,7 @@
   <!--exam created panel-->
   <et-created-panel
     [panel] = "panel"
+    [title] = "title"
     (instructions) = "showInstructions()"
     (begin) = "beginExam()">
   </et-created-panel>

@@ -6,14 +6,13 @@ import { animate, style, transition, trigger, state } from '@angular/core';
     templateUrl: '../html/created.html',
     styleUrls: ['../../assets/css/main.css'],
     animations: [
-        // button animation
         trigger('movePanel', [
             transition('void => *', [
                 style({
-                // transform: 'translatey(-100%)',
+                transform: 'translateX(-6%)',
                 opacity: 0
                 }),
-                animate('1400ms, ease-in')
+                animate('200ms, ease-in-out')
             ])
         ])
     ]
@@ -21,6 +20,7 @@ import { animate, style, transition, trigger, state } from '@angular/core';
 
 export class CreatedComponent{
     @Input() panel;
+    @Input() title;
     @Output() instructions = new EventEmitter;
     @Output() begin = new EventEmitter;
 

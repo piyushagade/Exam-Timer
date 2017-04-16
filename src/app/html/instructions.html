@@ -1,5 +1,5 @@
 <!--exam instructions-->
-  <div class="panel-transparent-wide" *ngIf="panel == 'instructions'">
+  <div class="panel-transparent-wide" [@movePanel] *ngIf="panel == 'instructions'">
     <span class="big white">Exam Instructions</span><br><br>
     
     <div class="box-dark wide-panel">
@@ -14,6 +14,7 @@
       <br>
       
 
-      <input type="submit" (click)='closeInstructions()' value="Close">
+      <button type="submit" (click)='closeInstructions()'class="pull-right button-style-green-alt">Close</button>
+      <br/><br/>
     </div>
   </div>

@@ -12,6 +12,8 @@ import { InstructionsComponent } from './components/instructions.component';
 import { BegunComponent } from './components/begun.component';
 import { CreateAnnouncementComponent } from './components/create-announcement.component';
 import { routing } from './app.routes';
+import { TruncatePipe } from './pipes/truncate';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { routing } from './app.routes';
     CreatedComponent,
     BegunComponent,
     CreateAnnouncementComponent,
+    TruncatePipe,
     
   ],
   imports: [

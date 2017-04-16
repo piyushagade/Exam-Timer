@@ -1,3 +1,18 @@
+@font-face {
+    font-family: kozuka;
+    src: url('../assets/fonts/kozuka.otf');
+}
+
+@font-face {
+    font-family: ubuntu;
+    src: url('../assets/fonts/ubuntu.ttf');
+}
+
+@font-face {
+    font-family: ubuntu_b;
+    src: url('../assets/fonts/ubuntu_b.ttf');
+}
+
 
 .bramhan{
     position: absolute;
@@ -6,7 +21,7 @@
     top: 0;
     left: 0;
 
-    font-family: Ubuntu;
+    font-family: ubuntu;
 }
 
 .gradient{
@@ -94,27 +109,59 @@ form .create {
 form .create-from-backup {
     margin: 0px 00px;
     width: 720px;
-    background: #fc0;
 }
 
 label{
     color: #1aaf75;
+    font-size: 11px;    
 }
 
 form input{
     outline: none;
-    width: 400px;
+    width: 100%;
 }
 
 
-form button {
+
+
+form select{
+    width: 80px;
+    height: 40px;
+    font-size: 14px;
+    display: inline-block;
+    background: none;
+    color: #fff;
+    padding-left: 26px;
+}
+
+form select option{
+    width: 80px;
+    font-size: 14px;
+    display: inline-block;
+    background: none;
+    color: #222;
+}
+
+
+
+.button-style-green {
     transition: all 0.2s ease-in-out;
     font: 18px Helvetica, Arial, sans-serif;
     border: 1px rgba(0, 0, 0, 0) solid;
     background: #1aaf75;
     color: #fff;
-    padding: 16px 40px;
-    width: 300px;
+    padding: 12px 26px;
+}
+
+
+.button-style-green-alt {
+    transition: all 0.2s ease-in-out;
+    font: 18px Helvetica, Arial, sans-serif;
+    border: 1px rgba(0, 0, 0, 0) solid;
+    background: #FFF;
+    color: #1aaf75;
+    padding: 12px 26px;
+    margin-left: 20px;
 }
 
 
@@ -246,7 +293,7 @@ input[type="textbox"] {
 
     display: inline-grid;
     width: auto;
-    height: 180px;
+    height: 100px;
 
     background: rgba(240, 240, 240, 0.8);
     vertical-align: top;
@@ -262,8 +309,8 @@ input[type="textbox"] {
 
     display: inline-grid;
     right: 0px;
-    height: 180px;
-    width: 180px;
+    height: 100px;
+    width: 100px;
 
     background: rgba(240, 240, 240, 0.8);
     vertical-align: top;
@@ -281,30 +328,34 @@ input[type="textbox"] {
 
 .topbar-icon{
     height: auto;
-    margin-left: 30px;
+    margin-left: 10px;
     margin-top: 16px;
-    width: 120px;
+    width: 80px;
     transition: all 0.8s ease-in-out;
     cursor: pointer;
 }
 
 
 .topbar-label{
-    width: 180px;
+    width: 100px;
+    color: #eee;
+    transition: all 0.56s ease-in-out;
     text-align: center;
+    opacity: 0.48;
 }
 
 
+
 .cell-last:hover{
-    height: 180px;
-    width: 180px;
+    height: 100px;
+    width: 100px;
     transform: scale(1.036);
     box-shadow: 4px 4px 10px rgba(40,40,40,0.33);    
 }
 
 .top img{
-    height: 200px;
-    width: 200px;
+    height: 80px;
+    width: 80px;
 }
 
 .cell{
@@ -315,8 +366,10 @@ input[type="textbox"] {
     padding-left: 30px;
     padding-right: 30px;
 
+    
     display: inline-grid;
     width: auto;
+    height: 180px;
 
     background: rgba(240, 240, 240, 0.8);
     vertical-align: top;
@@ -330,9 +383,15 @@ input[type="textbox"] {
     padding-left: 30px;
     padding-right: 30px;
 
-    display: inline-grid;
-    width: auto;
+    display: inline-block;
     height: 180px;
+
+    width: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
 
     background: rgba(240, 240, 240, 0.8);
     vertical-align: top;
@@ -425,21 +484,6 @@ td{
     padding-right: 36px;
 }
 
-select{
-    width: 80px;
-    display: inline-block;
-    background: none;
-    color: #fff;
-}
-
-select option{
-    width: 80px;
-    display: inline-block;
-    background: none;
-    color: #222;
-}
-
-
 .wide-panel{
     right: 0px;
 }
@@ -490,11 +534,12 @@ select option{
 
 
 .big{
-    font-size: 2.2vw;
+    font-size: 36px;
+    font-family: ubuntu_b;
 }
 
 .med{
-    font-size: 1.4vw;
+    font-size: 22px;
 }
 
 .color{
@@ -541,21 +586,18 @@ select option{
 
 .hours{
     background: none;
-    font-size: 14.5vw;
-    font-family: Ubuntu;
+    font-size: 220px;
     color: #333;
 }
 
 .minutes{
-    font-size: 14.5vw;
-    font-family: Ubuntu;
+    font-size: 220px;
     color: #1aaf75;
 }
 
 
 .seconds{
-    font-size: 8vw;
-    font-family: Ubuntu;
+    font-size: 140px;
     color: #888;
 }
 
@@ -570,7 +612,6 @@ select option{
     background: none;
     vertical-align: top;
     font-size: 3vw;
-    font-family: Ubuntu;
     color: #888;
 }
 
@@ -601,4 +642,9 @@ ol li{
     right: 0;
     background:  #f02;
     color: #fff;
+}
+
+.test{
+    position: relative;
+    color: #fc0;
 }

@@ -6,17 +6,17 @@ import { animate, style, transition, trigger, state } from '@angular/core';
     templateUrl: '../html/begun.html',
     styleUrls: ['../../assets/css/main.css'],
     animations: [
-        // button animation
+        // panel animation
         trigger('movePanel', [
             transition('void => *', [
                 style({
-                // transform: 'translatey(-100%)',
+                transform: 'translateX(-10%)',
                 opacity: 0
                 }),
-                animate('1400ms, ease-in')
+                animate('400ms, ease-in-out')
             ])
         ])
-    ]
+  ]
 })
 
 export class BegunComponent{

@@ -23,12 +23,13 @@ import {
     trigger('movePanel', [
       transition('void => *', [
         style({
-          // transform: 'translatey(-100%)',
+          // transform: 'translateY(-100%)',
           opacity: 0
         }),
         animate('1400ms, ease-in')
       ])
-    ])
+    ]),
+
   ]
 })
 
@@ -36,7 +37,7 @@ import {
 
 
 export class AppComponent {
-  panel = 'create';
+  panel = 'home';
   duration: number;
   elapsed: number;
   title: string;

@@ -3,64 +3,66 @@
     <span class="close"></span>
     <span class="big white">Create an examination event.</span><br><br>
       
-    <div class="box-dark">
-      <form [formGroup]="newExamForm" class="create" (ngSubmit)='onNewExamCreate($event)'>
-        <tbody>
-          <tr>
-            <td>
-              <label>
-                <span>Course Name</span>
-                <input formControlName="course" id="course" type="text" class="style-3" placeholder="Machine Learning">
-              </label>
-            </td>
+    <div class="">
+      <div class="box-dark">
+        <form [formGroup]="newExamForm" class="create" (ngSubmit)='onNewExamCreate($event)'>
+            <div class="row">
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <label>
+                  <span>Course Name</span>
+                  <input formControlName="course" id="course" type="text" class="style-3" placeholder="Machine Learning">
+                </label>
+              </div>
 
-            <td>
-              <label>
-                <span>Course Number</span>
-                <input formControlName="number" id="number" type="text" class="style-3" placeholder="CSE4142">
-              </label>
-            </td>
-          </tr>
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <label>
+                  <span>Course Number</span>
+                  <input formControlName="number" id="number" type="text" class="style-3" placeholder="CSE4142">
+                </label>
+              </div>
+            </div>
 
-          <tr>
-            <td>
-              <label>Exam title:
-                <input type="text" formControlName="title" id="title" class="style-3" placeholder="Midterm 1"/>
-              </label>
-            </td>
-            <td>
-              <label>
-                <span>Duration (minutes)</span>
-                <input formControlName="duration" id="duration" type="number" class="style-3" placeholder="90">
-              </label>
-            </td>
-          </tr>
+            <div class="row">
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <label>Exam title:
+                  <input type="text" formControlName="title" id="title" class="style-3" placeholder="Midterm 1"/>
+                </label>
+              </div>
 
-          <tr>
-            <td>
-              <label>
-                <span>Calculator allowed?</span><br>
-                <select formControlName="calculator" id="calculator">
-                  <option value="yes">Yes</option>
-                  <option value="no" selected="selected">No</option>
-                </select>
-              </label>
-            </td>
-            <td>
-              <label>
-                <span>Blank sheets provided?</span><br>
-                <select formControlName="blanksheets" id="blanksheets">
-                  <option value="yes" selected>Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </label>
-            </td>
-          </tr>
-        </tbody>
-                
-        <br/>
-        <br/>
-        <button type="submit" id="submit" value="Proceed" [disabled]="false">Proceed</button>
-      </form>
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <label>
+                  <span>Duration (minutes)</span>
+                  <input formControlName="duration" id="duration" type="number" class="style-3" placeholder="90">
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <label>
+                  <span>Calculator allowed?</span><br>
+                  <select formControlName="calculator" id="calculator">
+                    <option value="yes">Yes</option>
+                    <option value="no" selected="selected">No</option>
+                  </select>
+                </label>
+              </div>
+              
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <label>
+                  <span>Blank sheets provided?</span><br>
+                  <select formControlName="blanksheets" id="blanksheets">
+                    <option value="yes" selected>Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+                  
+          <br/>
+          <button type="submit" id="submit" class="button-style-green" value="Proceed" [disabled]="false">Proceed</button>
+          <button type="submit" class="pull-right button-style-green-alt" (click)="hidePanel()" [disabled]="false">Discard</button>
+        </form>
+      </div>
     </div>
   </div>

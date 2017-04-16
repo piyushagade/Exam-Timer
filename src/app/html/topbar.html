@@ -4,34 +4,34 @@
           <img class="uf-logo" src="./assets/images/ufsq.png">  
      </div>
 
-     <div class="cell" [ngClass]="{'hidden': panel !== 'home', 'cell': panel === 'home'}">
+     <div class="cell" *ngIf="false">
         <h2 class="gray">Hey there!</h2>
-        <p><span class="color">Welcome to UF Exam Timer.</span> <br/>Exam timer is exactly what it sounds like.</p>
      </div>
 
-     <div class="cell-info" [ngClass]="{'hidden': panel !== 'begun' && panel !== 'created' , 'cell-info': panel === 'begun' || panel === 'created'}">
-           <div class="examInfo">
-              <span class="big">{{course}}</span><br>
-              <span class="big gray">{{number}}</span><br>
-          </div>
+     <div class="cell-info" *ngIf="(panel == 'begun' || panel == 'created') && (course != '' || number != '')">
+        <div class="examInfo">
+          <br/>
+          <span class="big" *ngIf="course != ''">{{course | truncate : 36}} </span><br>
+          <span class="big color" *ngIf="number != ''">{{number | truncate : 36}}</span><br>
+        </div>
      </div>
 
      <!--fullscreen-->
-     <div class="cell-last" id="toggleFullscreen">
+     <div class="cell-last" id="toggleFullscreen" *ngIf="panel == 'begun'" [@icon]>
         <p><img src="./assets/images/fullscreen.png" class="topbar-icon"></p>
         <span class="topbar-label">Fullscreen</span>
      </div>
 
      <!--reset-->
-     <div class="cell-last" (click)="onReset()" [ngClass]="{'hidden': panel !== 'begun', 'cell-last': panel === 'begun'}">
+     <div class="cell-last" (click)="onReset()" *ngIf="panel == 'begun'" [@icon]>
         <p><img src="./assets/images/reset.png" class="topbar-icon"></p>
         <span class="topbar-label">Reset</span>
      </div>
 
      <!--announce-->
-     <div class="cell-last" (click)="createAnnouncement()">
+     <div class="cell-last" (click)="createAnnouncement()" [@icon]>
         <p><img src="./assets/images/announce.png" class="topbar-icon"></p>
-        <span class="topbar-label">Make an announcement</span>
+        <span class="topbar-label">Announce</span>
      </div>
 
   </div>

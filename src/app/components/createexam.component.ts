@@ -12,9 +12,10 @@ import { FormBuilder, Validators } from '@angular/forms';
     trigger('newExamPanel', [
       transition('void => *', [
         style({
+          transform: 'translateX(6%)',
           opacity: 0
         }),
-        animate('400ms, ease-in')
+        animate('200ms, ease-in-out')
       ])
     ])
   ]
@@ -35,6 +36,7 @@ export class CreateExamComponent{
 
     @Input() panel;
     @Output() created = new EventEmitter();
+    @Output() hide = new EventEmitter();
 
     constructor(public fb: FormBuilder){
 
@@ -43,5 +45,9 @@ export class CreateExamComponent{
     onNewExamCreate($event){
       event.preventDefault();
       this.created.emit((this.newExamForm.value));
+    }
+
+    hidePanel(){
+      this.hide.emit();
     }
 }
