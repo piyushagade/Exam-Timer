@@ -1,18 +1,32 @@
 <!--topbar-->
   <div class="topbar" [@topbar]='examPanelState'>
-     <div class="cell-logo">
-          <img class="uf-logo" src="./assets/images/ufsq.png">  
+     
+     <div class="cell-logo" *ngIf="panel != 'begun'" [@logo]>
+          <img class="logo" src="./assets/images/ufsq.png">  
+     </div>
+
+      <div class="cell-logo" *ngIf="panel == 'begun'" [@logo]>
+          <img class="logo-small" src="./assets/images/ufsq.png">  
      </div>
 
      <div class="cell" *ngIf="false">
         <h2 class="gray">Hey there!</h2>
      </div>
 
-     <div class="cell-info" *ngIf="(panel == 'begun' || panel == 'created') && (course != '' || number != '')">
+     <div class="cell-info" *ngIf="(panel == 'created' || panel == 'instructions') && (course != '' || number != '')" [@logo]>
         <div class="examInfo">
           <br/>
           <span class="big" *ngIf="course != ''">{{course | truncate : 36}} </span><br>
           <span class="big color" *ngIf="number != ''">{{number | truncate : 36}}</span><br>
+        </div>
+     </div>
+
+
+     <div class="cell-info-small" *ngIf="(panel == 'begun') && (course != '' || number != '')" [@logo]>
+        <div class="examInfo">
+          <br/>
+          <span class="" *ngIf="course != ''">{{course | truncate : 36}} </span><br>
+          <span class="color" *ngIf="number != ''">{{number | truncate : 36}}</span><br>
         </div>
      </div>
 

@@ -35,6 +35,26 @@ import { Input, Output, EventEmitter } from '@angular/core';
           opacity:0
         })) 
       ])
+    ]),
+
+
+    trigger('logo', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({
+          transform: 'scale(0.6)',
+          opacity:0
+        }),
+        animate(300, style({
+          transform: 'scale(1)',
+          opacity:1
+        })) 
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(0, style({
+          transform: 'scale(.6)',
+          opacity:0
+        })) 
+      ])
     ])
 
   ]

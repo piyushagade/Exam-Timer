@@ -47,6 +47,7 @@ export class AppComponent {
   department: string;
   calculator: string;
   blanksheets: string;
+  logo_state: string;
   last5mins: boolean;
   object;
   observable;
@@ -68,6 +69,7 @@ export class AppComponent {
   // show create new exam panel
   createExam(){
     this.panel = 'create';
+    this.logo_state = 'big';
   }
 
   // hide panel
@@ -78,6 +80,7 @@ export class AppComponent {
     else {
       this.panel = 'home';
     }
+    this.logo_state = 'big';
   }
 
   onNewExamCreate(value){
@@ -102,6 +105,7 @@ export class AppComponent {
   // show begun panel
   beginExam(){
     this.panel = 'begun';
+    this.logo_state = 'small';
 
   // start timer
   this.observable = Observable.interval(1000).map((x) => {
