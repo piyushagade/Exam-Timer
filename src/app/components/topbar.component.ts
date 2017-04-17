@@ -1,5 +1,6 @@
 import { Component, trigger, transition, animate, style} from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'et-topbar',
@@ -64,14 +65,44 @@ export class TopBarComponent{
     @Input() panel;
     @Input() course;
     @Input() number;
+    @Input() announce;
+    @Input() viewip;
+    @Output() close_announcement = new EventEmitter;
     @Output() reset = new EventEmitter;
     @Output() create_announcement = new EventEmitter;
+    @Output() publish_announcement = new EventEmitter;
+    @Output() view = new EventEmitter;
+
+
+    public announcementForm = this.fb.group({
+      announcement: ['', Validators.required],
+      question_announcement: ['', Validators.required]
+    });
+
+    constructor(public fb: FormBuilder){}
 
     onReset(){
       this.reset.emit();
     }
 
+    // show announcement box
     createAnnouncement(){
       this.create_announcement.emit();
+    }
+
+    // close announcement box
+    closeAnnouncement(){
+      this.close_announcement.emit();
+    }
+
+    // publish announcement
+    publishAnnouncement($event){
+      event.preventDefault();
+      this.publish_announcement.emit(this.announcementForm.value);
+    }
+
+    // switch view
+    switchView(){
+      this.view.emit(this.announcementForm.value);
     }
 }

@@ -1,5 +1,5 @@
-<!--home panel-->
-  <div class="panel-transparent" [@movePanel]='move' *ngIf="panel == 'home'">
+  <!--home panel-->
+  <div class="panel-home" [@movePanel]='move' *ngIf="panel == 'home'">
       <!--heading-->
       <span class="big white">Let's get started.</span><br><br>
       
@@ -15,10 +15,37 @@
         <p class="med box-2">
           You need to create an examination event first. To begin click on the button below.
         </p>
+
+        <!--<ol>
+          <li *ngFor="let item of exams | async">{{item.$key}}</li>
+        </ol>-->
       </div>
       
       <!--action buttons-->
       <div class="panel-buttons">
         <button id="create_exam" class="button-style-hollow" (click) = "createExam()">Create an exam</button>
       </div>
+  </div>
+
+  <!--create from code-->
+  <div class="panel-cloud" [@movePanel]='move' *ngIf="panel == 'home'">
+      <!--heading-->
+      <span class="big white">Have an exam code?</span><br><br>
+      
+      <!--box 1-->
+      <div>
+        <p class="med box-1">
+          If you already created an exam, enter the exam identifier code below to begin.
+        </p>
+      </div>
+
+      <!--box 2-->
+        <form class="cloudForm" [formGroup]="cloudForm" (ngSubmit)="loadCloud()">
+          <input formControlName="code" type="text" class="input-style-hollow" placeholder="Enter 5 digit code here"/>
+      
+          <!--action buttons-->
+          <div class="panel-buttons">
+            <button class="button-style-hollow" type="submit">Load from cloud</button>
+          </div>
+        </form>
   </div>

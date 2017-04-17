@@ -21,6 +21,7 @@ import { animate, style, transition, trigger, state } from '@angular/core';
 export class CreatedComponent{
     @Input() panel;
     @Input() title;
+    @Input() newExamCode;
     @Output() instructions = new EventEmitter;
     @Output() begin = new EventEmitter;
 

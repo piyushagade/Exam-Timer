@@ -26,7 +26,7 @@ export class CreateExamComponent{
     public newExamForm = this.fb.group({
       title: ['', Validators.required],
       course: ['', Validators.required],
-      department: ['\s*', Validators.required],
+      department: ['', Validators.required],
       professor: ['', Validators.required],
       duration: ['', Validators.required],
       calculator: ['', Validators.required],

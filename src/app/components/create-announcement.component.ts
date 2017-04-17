@@ -3,7 +3,7 @@ import { animate, style, transition, trigger, state } from '@angular/core';
 
 @Component({
     selector: 'et-create-announcement',
-    templateUrl: '../html/begun.html',
+    templateUrl: '../html/announce.html',
     styleUrls: ['../../assets/css/main.css'],
 })
 

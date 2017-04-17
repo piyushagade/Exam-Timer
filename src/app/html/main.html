@@ -1,59 +1,71 @@
  
-<div class="bramhan">
+<div class="bramhan scroll-bar-style">
   <!--gradient-->
   <div class="alert" [ngClass]="{'hidden': !last5mins}"></div>
   <div id="gradient" class="gradient" [ngClass]="{'hidden': last5mins}"></div>
   
-  <!--topbar-->
-  <et-topbar 
-    [panel] = "panel"
-    [course] = "course"
-    [number] = "number"
-    (reset) = "resetTimer()"
-    (create_announcement) = "createAnnouncement()">
-  </et-topbar>
+  <div class="panels-container">
+    <div class="panel-topbar">
+      <!--topbar-->
+      <et-topbar 
+        [panel] = "panel"
+        [course] = "course"
+        [number] = "number"
+        [announce] = "announce"
+        [viewip] = "view"
+        (reset) = "resetTimer()"
+        (view) = "switchView()"
+        (create_announcement) = "createAnnouncement()"
+        (close_announcement) = "closeAnnouncement()"
+        (publish_announcement) = "publish_announcement($event)">
+      </et-topbar>
+    </div>
 
-  <!--home panel-->
-  <et-home-panel
-    [panel] = "panel"
-    (create) = "createExam()">
-  </et-home-panel>
+    <div class="panel-body ">
+      <!--home panel-->
+      <et-home-panel
+        [panel] = "panel"
+        [exams] = "exams"
+        (create) = "createExam()"
+        (create_cloud) = "loadCloud($event)">
+      </et-home-panel>
 
-  <!--create new exam-->
-  <et-create-exam
-    [panel] = "panel"
-    (created) = "onNewExamCreate($event)"
-    (hide) = "hidePanel()">
-  </et-create-exam>
+      <!--create new exam-->
+      <et-create-exam
+        [panel] = "panel"
+        (created) = "onNewExamCreate($event)"
+        (hide) = "hidePanel()">
+      </et-create-exam>
 
-  <!--exam instructions-->
-  <et-instructions-panel
-    [panel] = "panel"
-    [calculator] = "calculator"
-    [blanksheets] = "blanksheets"
-    [duration] = "duration"
-    (close) = "hidePanel()">
-  </et-instructions-panel>
+      <!--exam instructions-->
+      <et-instructions-panel
+        [panel] = "panel"
+        [calculator] = "calculator"
+        [blanksheets] = "blanksheets"
+        [duration] = "duration"
+        (close) = "hidePanel()">
+      </et-instructions-panel>
 
-  <!--exam created panel-->
-  <et-created-panel
-    [panel] = "panel"
-    [title] = "title"
-    (instructions) = "showInstructions()"
-    (begin) = "beginExam()">
-  </et-created-panel>
+      <!--exam created panel-->
+      <et-created-panel
+        [panel] = "panel"
+        [title] = "title"
+        [newExamCode] = "newExamCode"
+        (instructions) = "showInstructions()"
+        (begin) = "beginExam()">
+      </et-created-panel>
 
 
-  <!--running timer panel-->
-  <et-begun-panel
-    [panel] = "panel"
-    [hours] = "hours"
-    [minutes] = "minutes"
-    [seconds] = "seconds"
-    >
-  </et-begun-panel>
-
-  <!--create announcement-->
-  <et-create-announcement>
-  </et-create-announcement>
-  
+      <!--running timer panel-->
+      <et-begun-panel
+        [panel] = "panel"
+        [hours] = "hours"
+        [minutes] = "minutes"
+        [seconds] = "seconds"
+        [timeup] = "timeup"
+        [announcements] = "announcements"
+        (delete)="deleteAnnouncement($event)"
+        >
+      </et-begun-panel>
+    </div>
+  </div>  

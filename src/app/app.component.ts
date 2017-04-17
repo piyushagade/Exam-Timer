@@ -11,7 +11,8 @@ import {
  import { FormBuilder, Validators } from '@angular/forms';
  import { ReactiveFormsModule } from '@angular/forms';
  import { Http } from '@angular/http';
- import { Observable } from "rxjs/Rx";
+ import { Observable } from 'rxjs/Rx';
+ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 
 @Component({
@@ -49,7 +50,11 @@ export class AppComponent {
   blanksheets: string;
   logo_state: string;
   last5mins: boolean;
+  timeup: boolean;
+  announce: boolean;
+  view: boolean;
   object;
+  announcements;
   observable;
   subscription;
 
@@ -61,15 +66,59 @@ export class AppComponent {
   private minutes: number;
   private seconds: number;
 
-  constructor(public fb: FormBuilder, public http: Http){
+  newExamCode: number;
+
+  dev: boolean = true;
+
+  // firebase
+  items: FirebaseListObservable<any[]>;
+  objects: FirebaseObjectObservable<any>;
+  exams;
+
+  constructor(public fb: FormBuilder, public http: Http, private af: AngularFire){
     this.object = {data: []};
+    this.announcements = {data: []};
     this.elapsed = 0;
+    this.announce = false;
+    this.timeup = false;
+    this.view = true;
+
+    this.items = af.database.list('/exams');
+    this.objects = af.database.object('/exams', { preserveSnapshot: true });
+
+    // retriving snapshot
+    this.objects.subscribe(snapshot => {
+      this.exams = snapshot.val();
+    });
   }
 
   // show create new exam panel
   createExam(){
     this.panel = 'create';
     this.logo_state = 'big';
+  }
+
+  // show create new exam panel
+  loadCloud(value){
+    // console.log(this.exams[value.code]);
+
+
+      console.log('load cloud ' + this.exams[value.code]);
+
+      // set data
+      if(this.exams[value.code] !== undefined){
+        this.duration = this.exams[value.code].duration;
+        this.course = this.exams[value.code].course;
+        this.calculator = this.exams[value.code].calculator;
+        this.blanksheets = this.exams[value.code].blanksheets;
+        this.title = this.exams[value.code].title;
+        this.number = this.exams[value.code].number;
+        this.professor = this.exams[value.code].professor;
+        this.department = this.exams[value.code].department;
+
+        this.newExamCode = value.code;
+        this.panel = 'created';
+      }
   }
 
   // hide panel
@@ -87,6 +136,8 @@ export class AppComponent {
     // set object
     this.object.data[0] = value;
 
+    console.log('onclick' + this.object.data[0]);
+
     // hide hidePanel
     this.panel = 'created';
 
@@ -99,6 +150,10 @@ export class AppComponent {
     this.number = this.object.data[0].number;
     this.professor = this.object.data[0].professor;
     this.department = this.object.data[0].department;
+
+    // set firebase entry
+    this.newExamCode = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
+    this.objects.update({ [this.newExamCode]: value});
   }
 
 
@@ -126,6 +181,10 @@ export class AppComponent {
 
       if(this.days === 0 && this.hours === 0 && this.minutes === 5) {
         this.last5mins = true;
+      }
+
+      if(this.days === 0 && this.hours === 0 && this.minutes === 0 && this.seconds === 0) {
+        this.timeup = true;
       }
     });
   }
@@ -179,14 +238,55 @@ export class AppComponent {
   // reset timer
   resetTimer(){
     this.panel = 'home';
-    this.subscription.unsubscribe();
+    if(this.subscription !== undefined) {
+      this.subscription.unsubscribe();
+    }
+    else{
+      // delete firebase entry
+      // this.objects.update({ [this.newExamCode]: null});
+    }
     this.elapsed = 0;
     this.last5mins = false;
+    this.timeup = false;
+    
+    
+    // reset data
+    this.duration = null;
+    this.course = null;
+    this.calculator = null;
+    this.blanksheets = null;
+    this.title = null;
+    this.number = null;
+    this.professor = null;
+    this.department = null;
+
+    // set firebase entry
+    this.newExamCode = null;
   }
 
   // show create announcement panel
   createAnnouncement(){
-    console.log('Create announcement: Under development');
+        this.announce = true;
+  }
+
+  // close announcement
+  closeAnnouncement(){
+      this.announce = !this.announce;
+  }
+
+  publish_announcement(value){
+    this.announcements.data.push(value);
+    console.log(JSON.stringify(this.announcements));
+  }
+
+  // delete announcement
+  deleteAnnouncement(value){
+    this.announcements.data.splice(value, 1);
+  }
+
+  //switch view
+  switchView(){
+    this.view = !this.view;
   }
 
 }

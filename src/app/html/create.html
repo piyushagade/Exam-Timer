@@ -1,7 +1,33 @@
-<!--create new exam-->
-  <div class="panel-transparent-wide"  *ngIf="panel == 'create'" [@newExamPanel]>
+
+  <div class="panel-home block" *ngIf="panel == 'create'" [@newExamPanel]>
+      <!--heading-->
+      <span class="big white">Create an examination event.</span><br><br>
+      
+      <!--box 1-->
+      <div>
+        <p class="med box-1">
+          Creating an exam is the first step. Enter the information below and click on Proceed.<br/>
+        </p>
+      </div>
+
+      <!--box 2-->
+      <div>
+        <p class="med box-2">
+          You may create an exam event now and resume it later using a 5-digit unique exam identifier which will be generated on the next page.
+        </p>
+
+        <!--<ol>
+          <li *ngFor="let item of exams | async">{{item.$key}}</li>
+        </ol>-->
+      </div>
+  </div>
+
+
+
+  <!--create new exam-->
+  <div class="panel-create-wide"  *ngIf="panel == 'create'" [@newExamPanel]>
     <span class="close"></span>
-    <span class="big white">Create an examination event.</span><br><br>
+    <!--<span class="big white">Create an examination event.</span><br><br>-->
       
     <div class="">
       <div class="box-dark">
@@ -10,14 +36,14 @@
               <div class="col-md-6 col-sm-12 col-xs-12">
                 <label>
                   <span>Course Name</span>
-                  <input formControlName="course" id="course" type="text" class="style-3" placeholder="Machine Learning">
+                  <input formControlName="course" id="course" type="text" class="input-style-form" placeholder="Machine Learning">
                 </label>
               </div>
 
               <div class="col-md-6 col-sm-12 col-xs-12">
                 <label>
                   <span>Course Number</span>
-                  <input formControlName="number" id="number" type="text" class="style-3" placeholder="CSE4142">
+                  <input formControlName="number" id="number" type="text" class="input-style-form" placeholder="CSE4142">
                 </label>
               </div>
             </div>
@@ -25,14 +51,14 @@
             <div class="row">
               <div class="col-md-6 col-sm-12 col-xs-12">
                 <label>Exam title:
-                  <input type="text" formControlName="title" id="title" class="style-3" placeholder="Midterm 1"/>
+                  <input type="text" formControlName="title" id="title" class="input-style-form" placeholder="Midterm 1"/>
                 </label>
               </div>
 
               <div class="col-md-6 col-sm-12 col-xs-12">
                 <label>
                   <span>Duration (minutes)</span>
-                  <input formControlName="duration" id="duration" type="number" class="style-3" placeholder="90">
+                  <input formControlName="duration" id="duration" type="number" class="input-style-form" placeholder="90">
                 </label>
               </div>
             </div>

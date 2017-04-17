@@ -1,14 +1,44 @@
-  <!--running timer panel-->
-  <div class="panel-timer" *ngIf="panel == 'begun'">
-      <!--heading-->
-      <span class="big white">Time remaining</span><br><br>
-      
-      <!--timer-->
-      <div class="timer">
-          <div class="timer-box">
-              <span class="hours">{{hours}}</span><span class="med timer-label">hrs</span>
-              <span class="minutes">&nbsp;{{minutes}}</span><span class="med timer-label">mins</span>
-              <span class="seconds">&nbsp; {{seconds}}</span><span class="med timer-label">sec</span>
-          </div>
-      </div>
-</div>
+
+
+    <!--running timer panel-->
+    <div class="panel-timer" *ngIf="panel == 'begun'">
+        <!--heading-->
+        <!--<span class="big white">Time remaining</span>-->
+        <br><br>
+        
+        <!--timer-->
+        <div class="timer">
+            <div class="timer-box" *ngIf="!timeup">
+                <span class="hours">{{hours}}</span><span class="med timer-label">hrs</span>
+                <span class="minutes">&nbsp;{{minutes}}</span><span class="med timer-label">mins</span>
+                <span class="seconds">&nbsp; {{seconds}}</span><span class="med timer-label">sec</span>
+            </div>
+
+            <div class="timer-box" *ngIf="timeup">
+                <span class="minutes">Time's up!</span>
+            </div>
+        </div>
+    </div>
+
+    <!--running announcement panel-->
+    <div class="panel-announcements" *ngIf="panel == 'begun'">
+        <!--heading-->
+        <span class="big white">Announcements</span><br><br>
+        
+        <div class="box-3" *ngIf="announcements.data.length == 0">
+            <span style="margin-left: 10px;">No announcements yet.</span>
+        </div>
+
+        <!--announcements-->
+            <div class="box-3" *ngFor="let data of announcements.data; let i = index" [@icon]>
+                <span class="announcement-close" (click)="deleteAnnouncement(i)">X</span>
+                <ol>
+                    <li>
+                        <span class="color"><b>{{data.question_announcement}}</b>
+                            <span *ngIf="data.question_announcement !== ''">: </span>
+                        </span>
+                        {{data.announcement}}
+                    </li>
+                </ol>
+            </div>
+    </div>

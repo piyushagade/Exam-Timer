@@ -1,11 +1,11 @@
 <!--topbar-->
   <div class="topbar" [@topbar]='examPanelState'>
      
-     <div class="cell-logo" *ngIf="panel != 'begun'" [@logo]>
+     <div class="cell-logo pull-right" *ngIf="panel == 'home'" [@logo]>
           <img class="logo" src="./assets/images/ufsq.png">  
      </div>
 
-      <div class="cell-logo" *ngIf="panel == 'begun'" [@logo]>
+      <div class="cell-logo pull-right" *ngIf="panel != 'home'" [@logo]>
           <img class="logo-small" src="./assets/images/ufsq.png">  
      </div>
 
@@ -13,7 +13,8 @@
         <h2 class="gray">Hey there!</h2>
      </div>
 
-     <div class="cell-info" *ngIf="(panel == 'created' || panel == 'instructions') && (course != '' || number != '')" [@logo]>
+     <!--info cell-->
+     <div class="cell-info" *ngIf="(panel == 'created') && (course != '' || number != '')" [@logo]>
         <div class="examInfo">
           <br/>
           <span class="big" *ngIf="course != ''">{{course | truncate : 36}} </span><br>
@@ -21,8 +22,12 @@
         </div>
      </div>
 
-
-     <div class="cell-info-small" *ngIf="(panel == 'begun') && (course != '' || number != '')" [@logo]>
+     <!--info cell small-->
+     <div 
+      class="cell-info-small"
+      *ngIf="(panel == 'begun') && (course != '' || number != '')"
+      [@logo]
+      [ngClass]="{'pull-right': panel !== 'begun'}">
         <div class="examInfo">
           <br/>
           <span class="" *ngIf="course != ''">{{course | truncate : 36}} </span><br>
@@ -30,22 +35,36 @@
         </div>
      </div>
 
-     <!--fullscreen-->
-     <div class="cell-last" id="toggleFullscreen" *ngIf="panel == 'begun'" [@icon]>
-        <p><img src="./assets/images/fullscreen.png" class="topbar-icon"></p>
-        <span class="topbar-label">Fullscreen</span>
-     </div>
-
      <!--reset-->
-     <div class="cell-last" (click)="onReset()" *ngIf="panel == 'begun'" [@icon]>
+     <div class="cell-last" (click)="onReset()" *ngIf="(panel == 'begun' || panel == 'created') && !viewip" [@icon]>
         <p><img src="./assets/images/reset.png" class="topbar-icon"></p>
         <span class="topbar-label">Reset</span>
      </div>
-
+     
      <!--announce-->
-     <div class="cell-last" (click)="createAnnouncement()" [@icon]>
-        <p><img src="./assets/images/announce.png" class="topbar-icon"></p>
-        <span class="topbar-label">Announce</span>
+     <div class="cell-last" *ngIf="(panel === 'begun') && !viewip" [ngClass]="{'cell-expanded': announce, 'cell-last': !announce}" [@icon]>
+        <p><img src="./assets/images/announce.png" (click)="createAnnouncement()"  class="topbar-icon" *ngIf="!announce"></p>
+        <span class="topbar-label" (click)="createAnnouncement()" *ngIf="!announce">Announce</span>
+        
+        <template [ngIf]="announce">
+          <span class="color" style="margin-left: 0px; margin-bottom: 12px; font-size: 20px;">Make an announcement</span>
+          
+          <form [formGroup]="announcementForm" (ngSubmit)="publishAnnouncement()">
+            <input type="text" class="input-announce" formControlName="question_announcement" placeholder="Question number (Optional)"/>
+            <textarea class="textarea-announce" formControlName="announcement" placeholder="Announce a change, keep it as concise as possible."></textarea>
+
+            <button class="btn-announce" type="submit">Publish</button>
+            <button class="btn-announce" (click)="closeAnnouncement()">Close</button>
+           
+          </form>
+        </template>
+
+     </div>
+
+     <!--fullscreen-->
+     <div class="cell-last" (click)="switchView()" *ngIf="panel == 'begun'" [@icon]>
+        <p><img src="./assets/images/menu.png" class="topbar-icon"></p>
+        <span class="topbar-label">Menu</span>
      </div>
 
   </div>
